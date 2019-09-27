@@ -14,11 +14,15 @@
         click me
     </button>
 
+    <script src="node_modules/rxjs/bundles/rxjs.umd.min.js"></script>
     <script>
         let btn = document.querySelector('#btn1');
-        btn.addEventListener('click', () => {
-            alert('Yohoo');
-        });
+        rxjs.fromEvent(btn, 'click').subscribe(
+            ev => {
+                alert('From rxjs');
+                console.log(ev);
+            }
+        );
     </script>
 </body>
 
