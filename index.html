@@ -16,12 +16,16 @@
 
     <script src="node_modules/rxjs/bundles/rxjs.umd.min.js"></script>
     <script>
-        let btn = document.querySelector('#btn1');
-        rxjs.fromEvent(btn, 'click').subscribe(
-            ev => {
-                alert('From rxjs');
-                console.log(ev);
-            }
+        const observable = new rxjs.Observable(subscriber => {
+            subscriber.next(1);
+            subscriber.next(2);
+            setTimeout(() => {
+                subscriber.next(4);
+            }, 2000);
+        });
+
+        observable.subscribe(
+            data => console.log(data)
         );
     </script>
 </body>
